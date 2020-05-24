@@ -4,6 +4,7 @@ package org.example;
 import java.util.Arrays;
 import java.util.Objects;
 
+
 public class FractionNumber {
     private final  Integer numerator;
     private final  Integer denominator;
@@ -12,15 +13,35 @@ public class FractionNumber {
         this.numerator =numerator;
         this.denominator = denominator;
     }
+    public FractionNumber(int numerator) {
+        this.numerator =numerator;
+        this.denominator = 1;
+    }
+
+    public Integer getNumerator() {
+        return numerator;
+    }
+
+    public Integer getDenominator() {
+        return denominator;
+    }
 
     public static FractionNumber reduce(FractionNumber number) {
-        if(number.numerator.equals(number.denominator))
-            return new FractionNumber(number.numerator,number.denominator);
+        if(isNumeratorEqualDenominator(number))
+            return number;
+        return reduceToLowestFraction(number);
+    }
+
+    private static FractionNumber reduceToLowestFraction(FractionNumber number) {
         FractionNumber  calculation = number;
-        for(Integer num : Arrays.asList(2,3,5,7)){
+        for(Integer num : Arrays.asList(2,3,4,5,6,7,8,9,10,11,13,17,19,23)){
             calculation = reduceBy(num,calculation);
         }
         return calculation;
+    }
+
+    private static boolean isNumeratorEqualDenominator(FractionNumber number) {
+        return number.numerator.equals(number.denominator);
     }
 
     private static FractionNumber reduceBy(Integer prime,FractionNumber number){
@@ -51,4 +72,5 @@ public class FractionNumber {
                 ", denominator=" + denominator +
                 '}';
     }
+
 }
