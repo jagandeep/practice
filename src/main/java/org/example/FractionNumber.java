@@ -1,13 +1,13 @@
 package org.example;
 
 
-import java.util.Arrays;
 import java.util.Objects;
 
 
 public class FractionNumber {
     private final  Integer numerator;
     private final  Integer denominator;
+    private ReduceFraction reduceFraction = new ReduceFraction();
 
     public FractionNumber(int numerator, int denominator) {
         this.numerator =numerator;
@@ -26,30 +26,9 @@ public class FractionNumber {
         return denominator;
     }
 
-    public static FractionNumber reduce(FractionNumber number) {
-        if(isNumeratorEqualDenominator(number))
-            return number;
-        return reduceToLowestFraction(number);
-    }
-
-    private static FractionNumber reduceToLowestFraction(FractionNumber number) {
-        FractionNumber  calculation = number;
-        for(Integer num : Arrays.asList(2,3,4,5,6,7,8,9,10,11,13,17,19,23)){
-            calculation = reduceBy(num,calculation);
-        }
-        return calculation;
-    }
-
-    private static boolean isNumeratorEqualDenominator(FractionNumber number) {
-        return number.numerator.equals(number.denominator);
-    }
-
-    private static FractionNumber reduceBy(Integer prime,FractionNumber number){
-        if(number.numerator % prime == 0 && number.denominator % prime == 0)
-            return  new FractionNumber(number.numerator/prime, number.denominator/prime);
-        else
-            return  number;
-    }
+   public FractionNumber reduce(){
+       return reduceFraction.reduce(this);
+   }
 
     @Override
     public boolean equals(Object o) {
