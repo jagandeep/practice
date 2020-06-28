@@ -14,14 +14,14 @@ public class ReduceFraction {
     }
 
     private FractionNumber reduceFraction(FractionNumber calculation, List<Integer> primes) {
-        FractionNumber reducedFraction = makeReducedFraction(calculation,primes);
+        FractionNumber reducedFraction = makeReduceFraction(calculation,primes);
         if(reducedFraction.equals(calculation))
             return reducedFraction;
         else
            return reduceFraction(reducedFraction,getPrimeNumbers());
     }
 
-    private FractionNumber makeReducedFraction(FractionNumber calculation, List<Integer> primes) {
+    private FractionNumber makeReduceFraction(FractionNumber calculation, List<Integer> primes) {
         FractionNumber result  = calculation;
         for(Integer prime : primes){
             if(isDivisibleByPrime(calculation, prime))

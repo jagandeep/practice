@@ -13,7 +13,7 @@ public class FractionEqualTest {
     @Test
     public void reflexive(){
         FractionNumber fraction = new FractionNumber(2,3);
-      assertEquals(fraction,fraction);
+        assertEquals(fraction,fraction);
     }
     @Test
     public void symmetric(){
